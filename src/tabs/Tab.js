@@ -1,13 +1,13 @@
 import React from "react";
 
-class Tab extends React.Component {
-  render(){
+ const Tab = (props) => {
+   
     return (
-      <div className="Tabs__tab">
-        { this.props.children }      
-      </div>
+      <li className="Tabs__tab-title" onClick={() => props.callback(props.value, props.children)}>
+        {props.title}     
+      </li>
     );
   }
-}
+
 
 export default Tab;
