@@ -1,50 +1,37 @@
 import React from 'react';
 
 class Tabs extends React.Component {
-  constructor(props) {
+  constructor({props}) {
     super(props)
 
-    const tabsArr = this.props.children.map( (tab, index) => {
-      return { 
-        title: tab.props.title,
-        text: tab.props.children,
-        id: index,
-      }
-    })
-
     this.state = {
-      tabs: tabsArr,
-      activeTab: tabsArr[0]
+      activeTabId: 0,
     }
+
+    this.onTabItemClick = this.onTabItemClick.bind(this)
+    this.setTab = this.setTab.bind(this)
   }
 
-  setTab(title) {
-    let activeTab = this.state.tabs.find(tab => tab.title === title)
+  onTabItemClick(value) {
+    this.setTab(value)
+  }
 
+  setTab(id) {
     this.setState({
-      activeTab
+      activeTabId: id, 
     })
   }
 
   render(){
-    const tabHeaders = this.state.tabs.map(tab => {
-      return (
-        <li 
-          className="Tabs__tab-title" 
-          key={tab.id}
-          onClick={() => this.setTab(tab.title) }
-        >
-          {tab.title}
-        </li>
-      )
-    })
+    const currentText = this.props.children().props.children[this.state.activeTabId].props.children;
+    
     return (
       <div className="Tabs">
         <ul className="Tabs__tabs-list">
-          {tabHeaders}
+          {this.props.children(this.onTabItemClick)}
         </ul>
         <div>
-          {this.state.activeTab.text}
+          {currentText}
         </div>
       </div>  
     );
