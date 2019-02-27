@@ -2,6 +2,7 @@
   "name": "tabs-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vitaliybaryliuk.github.io/tabs-react/",
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.8.3",

@@ -10,17 +10,10 @@ class App extends Component {
     return (
       <div className="App">
         <Tabs>
-          {(onSelect) => {
-            return (
-              <div>
-                <Tab title="Tab 1" value={0} callback={onSelect} >Some text 1</Tab>
-                <Tab title="Tab 2" value={1} callback={onSelect} >Some text 2</Tab>
-                <Tab title="Tab 3" value={2} callback={onSelect} >Some text 3</Tab>
-              </div>
-            );
-          }}
+          <Tab title="Tab 1">Some text 1</Tab>
+          <Tab title="Tab 2">Some text 2</Tab>
+          <Tab title="Tab 3">Some text 3</Tab>
         </Tabs>
-
       </div>
     );
   }
