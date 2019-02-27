@@ -22,18 +22,22 @@ class Tabs extends React.Component {
     })
   }
 
-  render(){
-    const currentText = this.props.children().props.children[this.state.activeTabId].props.children;
-    
+  render() {
+    const { children } = this.props;
+    const { activeTabId } = this.state;
+    const currentText = children[activeTabId].props.children;
+
     return (
       <div className="Tabs">
         <ul className="Tabs__tabs-list">
-          {this.props.children(this.onTabItemClick)}
+          {React.Children.map(children, (child, i) => {
+            return React.cloneElement(child, {
+              callback: () => this.onTabItemClick(i)
+            });
+          })}
         </ul>
-        <div>
-          {currentText}
-        </div>
-      </div>  
+        <div>{currentText}</div>
+      </div>
     );
   }
 }  
